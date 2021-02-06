@@ -1,0 +1,8 @@
+<div class="container">
+  <app-card
+    *ngFor="let card of cardList"
+    [cardData]="card"
+    [flipped]="card.flipped"
+    (click)="card.flipped = !card.flipped">
+  </app-card>
+</div>

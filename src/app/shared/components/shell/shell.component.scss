@@ -3,7 +3,6 @@
 :host {
   display: grid;
   height: 100vh;
-  background-color: $memoryBackgroundGray;
   grid-template-rows: 60px auto;
   grid-template-areas:
     'header'
@@ -32,6 +31,7 @@ app-header {
   flex-direction: column;
   justify-content: center;
   z-index: -1;
+  background-color: $memoryBackgroundGray;
 }
 
 .background-text {

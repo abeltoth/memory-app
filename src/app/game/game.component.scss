@@ -1,0 +1,40 @@
+.container {
+  max-width: 845px;
+  margin: auto;
+}
+
+.info-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0;
+}
+
+#current-tries {
+  display: flex;
+  align-items: center;
+}
+
+#current-tries .label {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.current-number {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#best {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#best .label {
+  margin-bottom: 5px;
+}
+
+.best-number {
+  font-size: 30px;
+}

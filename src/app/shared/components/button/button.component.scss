@@ -1,6 +1,6 @@
 @import "~src/variables";
 
-#button-body {
+.button-body {
   height: 50px;
   width: 180px;
   border: none;
@@ -9,4 +9,18 @@
   color: $memoryWhite;
   background-color: $memoryOrange;
   cursor: pointer;
+}
+
+.secondary {
+  height: 40px;
+  width: 120px;
+  font-weight: 800;
+  border: 2px solid $memoryBlack;
+  color: $memoryBlack;
+  background-color: transparent;
+}
+
+.secondary:hover {
+  color: $memoryBackgroundGray;
+  background-color: $memoryBlack;
 }
