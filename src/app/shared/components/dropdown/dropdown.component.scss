@@ -1,0 +1,35 @@
+@import "~src/variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.vertical-label {
+  flex-direction: row;
+}
+
+.label {
+  color: $memoryGray;
+  display: block;
+  font-size: 11px;
+  margin: 10px;
+}
+
+#dropdown {
+  position: relative;
+  height: 50px;
+  width: 100px;
+  font-size: 22px;
+  padding: 0 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='30' viewBox='0 0 24 24' width='30' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 18px);
+  background-position-y: 55%;
+}

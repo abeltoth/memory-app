@@ -1,0 +1,12 @@
+@import "~src/variables";
+
+#button-body {
+  height: 50px;
+  width: 180px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  color: $memoryWhite;
+  background-color: $memoryOrange;
+  cursor: pointer;
+}

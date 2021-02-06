@@ -1,0 +1,66 @@
+@import "~src/variables";
+
+#header-body,
+#mobile-menu {
+  background-color: $memoryBlack;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: 60px;
+  gap: 15px;
+  align-items: center;
+  padding: 0 15px;
+  box-shadow: 0 0 10px 0 $memoryBlack;
+  z-index: 100;
+  position: relative;
+}
+
+#logo {
+  max-height: 30px;
+}
+
+#title {
+  color: $memoryWhite;
+}
+
+#game-settings {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  gap: 10px;
+}
+
+#mobile-menu-icon {
+  display: none;
+  justify-self: end;
+  color: $memoryWhite;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+#mobile-menu {
+  display: none;
+}
+
+@media(max-width: 600px) {
+  #game-settings {
+    display: none;
+  }
+
+  #mobile-menu-icon {
+    display: block;
+  }
+
+  #mobile-menu {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 80px;
+    justify-content: center;
+    padding: 0 0 15px;
+    align-items: flex-end;
+    z-index: 10;
+  }
+
+  .label {
+    margin-bottom: 5px;
+  }
+}
