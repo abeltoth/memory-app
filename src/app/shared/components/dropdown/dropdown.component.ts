@@ -1,5 +1,5 @@
 import { DropdownOption } from './../../model/models';
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -12,9 +12,18 @@ export class DropdownComponent implements OnInit {
   @Input() labelDirection: 'vertical' | 'horizontal' = 'horizontal';
   @Input() options: DropdownOption[] = [];
 
+  @Output() optionSelected = new EventEmitter<any>();
+
+  selectedOption: DropdownOption;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.selectedOption = this.options.find(option => option.selected === true) || this.options[0];
+  }
+
+  optionSelect(): void {
+    this.optionSelected.emit(this.selectedOption);
   }
 
 }

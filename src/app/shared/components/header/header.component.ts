@@ -1,9 +1,10 @@
 import { EventsService } from './../../services/events.service';
 import { DropdownOption } from './../../model/models';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
 import { SubSink } from 'subsink';
+import { GameSettingsService } from '../../services/game-settings.service';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,7 @@ import { SubSink } from 'subsink';
     )
   ],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterContentInit {
 
   mobileMenuVisible = false;
   gameSettingsVisible = false;
@@ -33,7 +34,8 @@ export class HeaderComponent implements OnInit {
   subs = new SubSink();
 
   constructor(
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private gameSettingsService: GameSettingsService
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +47,26 @@ export class HeaderComponent implements OnInit {
         }
       })
     );
+  }
+
+  ngAfterContentInit(): void {
+    this.getSelectedDeckSizeOption();
+  }
+
+  deckSizeOptionSelected(option: DropdownOption): void {
+    if (this.gameSettingsService.deckSize?.toString() !== option.value) {
+      this.gameSettingsService.deckSizeSelected.next(option);
+    }
+  }
+
+  getSelectedDeckSizeOption(): void {
+    const savedOption = Number(localStorage.getItem('memory-app-deck-size'));
+    if (savedOption) {
+      const selectedOptionIndex = this.sizeOptions.findIndex(option => option.value === savedOption.toString());
+      this.sizeOptions[selectedOptionIndex].selected = true;
+    } else {
+      this.sizeOptions[0].selected = true;
+    }
   }
 
   private setSizeOptions(): void {
