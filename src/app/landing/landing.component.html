@@ -1,0 +1,11 @@
+<div id="container">
+  <div class="titles">
+    <div id="title">SNAPSOFT</div>
+    <div id="subtitle">MEMORY GAME</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="settings">
+    <app-dropdown [label]="'Deck size: '" [options]="sizeOptions"></app-dropdown>
+    <app-button [text]="'START NEW GAME'" (click)="navigateToGame()" class="new-game-button"></app-button>
+  </div>
+</div>

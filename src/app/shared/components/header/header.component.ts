@@ -41,14 +41,14 @@ export class HeaderComponent implements OnInit {
     this.subs.add(
       this.eventsService.routeChanged.subscribe((routerEvent) => {
         if (routerEvent instanceof NavigationEnd) {
-          this.gameSettingsVisible = routerEvent.url === '/landing';
+          this.gameSettingsVisible = routerEvent.url === '/game';
         }
       })
     );
   }
 
-  private setSizeOptions() {
-    const optionValues = [...Array(21).keys()].filter(v => v > 5 && v%2 === 0);
+  private setSizeOptions(): void {
+    const optionValues = [...Array(21).keys()].filter(v => v > 5 && v % 2 === 0);
 
     optionValues.forEach(value => {
       this.sizeOptions.push({key: value.toString(), selected: false, value: value.toString()});

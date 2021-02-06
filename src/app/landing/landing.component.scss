@@ -1,0 +1,35 @@
+#container {
+  max-width: 500px;
+  height: calc(100vh - 60px);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titles {
+  margin-top: -90px;
+  text-align: center;
+}
+
+#title {
+  font-size: 44px;
+}
+
+#subtitle {
+  font-size: 22px;
+}
+
+.spacer {
+  height: 90px;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-game-button {
+  margin-top: 30px;
+}
