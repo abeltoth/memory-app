@@ -1,0 +1,60 @@
+@import "~src/variables";
+
+:host {
+  display: grid;
+  height: 100vh;
+  background-color: $memoryBackgroundGray;
+  grid-template-rows: 60px auto;
+  grid-template-areas:
+    'header'
+    'content';
+}
+
+app-header {
+  grid-area: header;
+  z-index: 100;
+}
+
+.content {
+  grid-area: content;
+  position: relative;
+  z-index: 1;
+}
+
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: -1;
+}
+
+.background-text {
+  font-size: 23.5vw;
+  color: $memoryLightGray;
+  font-family: $fontPlay;
+  text-align: center;
+}
+
+.background-line {
+  width: 100%;
+  height: 1vw;
+  background-color: $memoryLightGray;
+  margin-top: 50px;
+}
+
+.background-square {
+  width: 4.5vw;
+  height: 4.5vw;
+  background-color: $memoryLightGray;
+  margin: auto;
+  transform: rotate(45deg);
+  border-radius: 4px;
+  position: relative;
+  top: -2.7vw;
+}
