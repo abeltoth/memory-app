@@ -1,5 +1,5 @@
 import { CardData } from './../../shared/model/models';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-board',
@@ -10,9 +10,17 @@ export class BoardComponent implements OnInit {
 
   @Input() cardList: CardData[];
 
+  @Output() cardFlipped = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  cardFlip(card: CardData): void {
+    if (!card.matched) {
+      this.cardFlipped.emit(card);
+    }
   }
 
 }

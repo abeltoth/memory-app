@@ -1,8 +1,8 @@
 <div class="flip-card">
-  <div class="flip-card-inner" [class.flip-card-flipped]="flipped">
+  <div class="flip-card-inner" [class.flip-card-flipped]="cardData.flipped">
     <div class="flip-card-back">
     </div>
-    <div class="flip-card-front">
+    <div class="flip-card-front" [class.flip-card-matched]="cardData.matched">
       <img [src]="cardData.imageUrl" class="flip-card-image" alt="card image">
     </div>
   </div>

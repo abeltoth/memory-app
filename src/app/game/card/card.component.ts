@@ -8,7 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  @Input() flipped = false;
   @Input() cardData: CardData;
 
   constructor() { }

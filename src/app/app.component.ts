@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     this.subs.add(
       this.router.events.subscribe((routerEvent) => {
         if (routerEvent instanceof NavigationEnd) {
-          this.eventsService.routeChanged.next(routerEvent);
+          this.eventsService.routeChanged$.next(routerEvent);
         }
       })
     );

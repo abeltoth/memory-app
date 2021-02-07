@@ -5,7 +5,7 @@
   </div>
   <div class="spacer"></div>
   <div class="settings">
-    <app-dropdown [label]="'Deck size: '" [options]="sizeOptions"></app-dropdown>
-    <app-button [text]="'START NEW GAME'" (click)="navigateToGame()" class="new-game-button"></app-button>
+    <app-dropdown [label]="'Deck size: '" [options]="sizeOptions" (optionSelected)="deckSizeOptionSelected($event)"></app-dropdown>
+    <app-button [text]="'START NEW GAME'" (click)="startGame()" class="new-game-button"></app-button>
   </div>
 </div>

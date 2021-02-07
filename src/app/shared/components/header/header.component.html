@@ -3,11 +3,11 @@
   <div id="title">MEMORY GAME</div>
   <div *ngIf="gameSettingsVisible" id="game-settings">
     <app-dropdown [label]="'Deck size:'" [labelDirection]="'vertical'" [options]="sizeOptions" (optionSelected)="deckSizeOptionSelected($event)"></app-dropdown>
-    <app-button [text]="'START NEW GAME'"></app-button>
+    <app-button [text]="'START NEW GAME'" (click)="startGame()"></app-button>
   </div>
   <span *ngIf="gameSettingsVisible" id="mobile-menu-icon" class="material-icons" (click)="mobileMenuVisible = !mobileMenuVisible">menu</span>
 </div>
 <div *ngIf="mobileMenuVisible && gameSettingsVisible" id="mobile-menu" [@mobilemenuAnimation]>
-  <app-dropdown [label]="'Deck size:'" [options]="sizeOptions"></app-dropdown>
-  <app-button [text]="'START NEW GAME'"></app-button>
+  <app-dropdown [label]="'Deck size:'" [options]="sizeOptions" (optionSelected)="deckSizeOptionSelected($event)"></app-dropdown>
+  <app-button [text]="'START NEW GAME'" (click)="startGame()"></app-button>
 </div>

@@ -25,7 +25,7 @@ import { GameSettingsService } from '../../services/game-settings.service';
     )
   ],
 })
-export class HeaderComponent implements OnInit, AfterContentInit {
+export class HeaderComponent implements OnInit {
 
   mobileMenuVisible = false;
   gameSettingsVisible = false;
@@ -39,42 +39,27 @@ export class HeaderComponent implements OnInit, AfterContentInit {
   ) { }
 
   ngOnInit(): void {
-    this.setSizeOptions();
+    this.sizeOptions = this.gameSettingsService.loadDeckSizeOptions();
     this.subs.add(
-      this.eventsService.routeChanged.subscribe((routerEvent) => {
+      this.eventsService.routeChanged$.subscribe((routerEvent) => {
         if (routerEvent instanceof NavigationEnd) {
           this.gameSettingsVisible = routerEvent.url === '/game';
         }
+      }),
+      this.gameSettingsService.onDeckSizeSelected$.subscribe(() => {
+        this.sizeOptions = this.gameSettingsService.loadDeckSizeOptions();
       })
     );
   }
 
-  ngAfterContentInit(): void {
-    this.getSelectedDeckSizeOption();
-  }
-
   deckSizeOptionSelected(option: DropdownOption): void {
-    if (this.gameSettingsService.deckSize?.toString() !== option.value) {
-      this.gameSettingsService.deckSizeSelected.next(option);
+    if (this.gameSettingsService.loadSelectedDeckSizeOptionValue().toString() !== option.value) {
+      this.gameSettingsService.saveDeckSizeOptions(Number(option.value));
     }
   }
 
-  getSelectedDeckSizeOption(): void {
-    const savedOption = Number(localStorage.getItem('memory-app-deck-size'));
-    if (savedOption) {
-      const selectedOptionIndex = this.sizeOptions.findIndex(option => option.value === savedOption.toString());
-      this.sizeOptions[selectedOptionIndex].selected = true;
-    } else {
-      this.sizeOptions[0].selected = true;
-    }
-  }
-
-  private setSizeOptions(): void {
-    const optionValues = [...Array(21).keys()].filter(v => v > 5 && v % 2 === 0);
-
-    optionValues.forEach(value => {
-      this.sizeOptions.push({key: value.toString(), selected: false, value: value.toString()});
-    });
+  startGame(): void {
+    this.gameSettingsService.startGame$.next();
   }
 
 }

@@ -5,7 +5,7 @@ import { ReplaySubject } from 'rxjs';
   providedIn: 'root'
 })
 export class EventsService {
-  routeChanged = new ReplaySubject(1);
+  routeChanged$ = new ReplaySubject(1);
 
   constructor() { }
 }

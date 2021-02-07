@@ -1,6 +1,7 @@
 import { DropdownOption } from './../shared/model/models';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GameSettingsService } from '../shared/services/game-settings.service';
 
 @Component({
   selector: 'app-landing',
@@ -12,23 +13,24 @@ export class LandingComponent implements OnInit {
   sizeOptions: DropdownOption[] = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private gameSettingsService: GameSettingsService
   ) { }
 
   ngOnInit(): void {
-    this.setSizeOptions();
+    this.sizeOptions = this.gameSettingsService.loadDeckSizeOptions();
   }
 
-  navigateToGame(): void {
+
+  deckSizeOptionSelected(option: DropdownOption): void {
+    if (this.gameSettingsService.loadSelectedDeckSizeOptionValue().toString() !== option.value) {
+      this.gameSettingsService.saveDeckSizeOptions(Number(option.value));
+      this.gameSettingsService.onDeckSizeSelected$.next(option.value);
+    }
+  }
+
+  startGame(): void {
     this.router.navigateByUrl('/game');
-  }
-
-  private setSizeOptions(): void {
-    const optionValues = [...Array(21).keys()].filter(v => v > 5 && v % 2 === 0);
-
-    optionValues.forEach(value => {
-      this.sizeOptions.push({key: value.toString(), selected: false, value: value.toString()});
-    });
   }
 
 }

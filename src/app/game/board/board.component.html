@@ -2,7 +2,6 @@
   <app-card
     *ngFor="let card of cardList"
     [cardData]="card"
-    [flipped]="card.flipped"
-    (click)="card.flipped = !card.flipped">
+    (click)="cardFlip(card)">
   </app-card>
 </div>

@@ -7,4 +7,5 @@ export interface DropdownOption {
 export interface CardData {
   imageUrl: string;
   flipped: boolean;
+  matched: boolean;
 }

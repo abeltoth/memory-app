@@ -2,13 +2,13 @@
   <div class="info-line">
     <div id="current-tries">
       <span class="label">Current tries:</span>
-      <span class="current-number">0</span>
+      <span class="current-number">{{ currentTries }}</span>
     </div>
     <div id="best">
       <span class="label">Best:</span>
-      <span class="best-number">3</span>
+      <span class="best-number">{{ bestScore }}</span>
     </div>
-    <app-button [text]="'RESTART'" [secondary]="true"></app-button>
+    <app-button [text]="'RESTART'" [secondary]="true" (click)="startGame()"></app-button>
   </div>
-  <app-board [cardList]="cardList"></app-board>
+  <app-board [cardList]="cardList" (cardFlipped)="cardFlipped($event)"></app-board>
 </div>
