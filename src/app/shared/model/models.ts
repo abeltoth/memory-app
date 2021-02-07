@@ -9,3 +9,8 @@ export interface CardData {
   flipped: boolean;
   matched: boolean;
 }
+
+export interface GameState {
+  currentTries: number;
+  cardList: CardData[];
+}

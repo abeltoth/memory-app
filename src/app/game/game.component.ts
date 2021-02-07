@@ -1,5 +1,5 @@
 import { GameSettingsService } from './../shared/services/game-settings.service';
-import { CardData } from './../shared/model/models';
+import { CardData, GameState } from './../shared/model/models';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -20,7 +20,7 @@ export class GameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.startGame();
+    this.loadGameState() ? this.loadGame() : this.startGame();
     this.gameSettingsService.startGame$.subscribe(() => {
       this.startGame();
     });
@@ -28,8 +28,13 @@ export class GameComponent implements OnInit {
 
   startGame(): void {
     this.setCardList();
-    this.currentTries = 0;
     this.gameEnded = false;
+  }
+
+  loadGame(): void {
+    const gameStateObj = this.loadGameState();
+    this.currentTries = gameStateObj.currentTries;
+    this.cardList = gameStateObj.cardList;
   }
 
   endGame(): void {
@@ -38,6 +43,7 @@ export class GameComponent implements OnInit {
       localStorage.setItem('memory-app-best-score', this.bestScore);
     }
     this.gameEnded = true;
+    this.currentTries = 0;
   }
 
   cardFlipped(card: CardData): void {
@@ -46,11 +52,20 @@ export class GameComponent implements OnInit {
       this.flippedCardList.push(card);
       if (this.flippedCardList.length === 2) {
         const match = this.flippedCardList[0].imageUrl === this.flippedCardList[1].imageUrl;
+        this.currentTries++;
         this.evaluateFlippedCards(match);
         this.flipBackCards(match);
-        this.currentTries++;
       }
     }
+  }
+
+  private saveGameState(): void {
+    const stateObj: GameState = {currentTries: this.currentTries, cardList: this.cardList};
+    localStorage.setItem('memory-game-state', JSON.stringify(stateObj));
+  }
+
+  private loadGameState(): GameState {
+    return JSON.parse(localStorage.getItem('memory-game-state'));
   }
 
   private evaluateFlippedCards(match: boolean): void {
@@ -72,9 +87,11 @@ export class GameComponent implements OnInit {
       setTimeout(() => {
         this.cardList.filter(c => !c.matched).forEach(c => c.flipped = false);
         this.flippedCardList = [];
+        this.saveGameState();
       }, 1500);
     } else {
       this.flippedCardList = [];
+      this.saveGameState();
     }
   }
 
