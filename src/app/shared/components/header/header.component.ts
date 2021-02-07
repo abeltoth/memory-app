@@ -1,8 +1,8 @@
 import { EventsService } from './../../services/events.service';
 import { DropdownOption } from './../../model/models';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { NavigationEnd } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { SubSink } from 'subsink';
 import { GameSettingsService } from '../../services/game-settings.service';
 
@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
   subs = new SubSink();
 
   constructor(
+    private router: Router,
     private eventsService: EventsService,
     private gameSettingsService: GameSettingsService
   ) { }
@@ -60,6 +61,10 @@ export class HeaderComponent implements OnInit {
 
   startGame(): void {
     this.gameSettingsService.startGame$.next();
+  }
+
+  navigateToLandingPage(): void {
+    this.router.navigateByUrl('/landing');
   }
 
 }

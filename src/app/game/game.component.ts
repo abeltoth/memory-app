@@ -27,6 +27,7 @@ export class GameComponent implements OnInit {
   }
 
   startGame(): void {
+    this.resetGame();
     this.setCardList();
     this.gameEnded = false;
   }
@@ -37,13 +38,19 @@ export class GameComponent implements OnInit {
     this.cardList = gameStateObj.cardList;
   }
 
+  resetGame(): void {
+    this.currentTries = 0;
+    this.flippedCardList = [];
+    localStorage.removeItem('memory-game-state');
+  }
+
   endGame(): void {
     if (this.currentTries < (Number(this.bestScore) || Infinity)) {
       this.bestScore = this.currentTries.toString();
       localStorage.setItem('memory-app-best-score', this.bestScore);
     }
     this.gameEnded = true;
-    this.currentTries = 0;
+    this.resetGame();
   }
 
   cardFlipped(card: CardData): void {
@@ -55,6 +62,9 @@ export class GameComponent implements OnInit {
         this.currentTries++;
         this.evaluateFlippedCards(match);
         this.flipBackCards(match);
+        if (this.cardList.every(c => c.matched)) {
+          this.endGame();
+        }
       }
     }
   }
@@ -76,9 +86,6 @@ export class GameComponent implements OnInit {
           c.matched = true;
         }
       });
-      if (this.cardList.every(c => c.matched)) {
-        this.endGame();
-      }
     }
   }
 

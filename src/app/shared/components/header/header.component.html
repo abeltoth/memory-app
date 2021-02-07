@@ -1,5 +1,5 @@
 <div id="header-body">
-  <img src="../../../../assets/images/snapsoft-logo.svg" id="logo" alt="logo">
+  <img src="../../../../assets/images/snapsoft-logo.svg" id="logo" alt="logo" (click)="navigateToLandingPage()">
   <div id="title">MEMORY GAME</div>
   <div *ngIf="gameSettingsVisible" id="game-settings">
     <app-dropdown [label]="'Deck size:'" [labelDirection]="'vertical'" [options]="sizeOptions" (optionSelected)="deckSizeOptionSelected($event)"></app-dropdown>

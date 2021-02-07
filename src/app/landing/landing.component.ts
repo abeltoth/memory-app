@@ -31,6 +31,7 @@ export class LandingComponent implements OnInit {
 
   startGame(): void {
     this.router.navigateByUrl('/game');
+    this.gameSettingsService.startGame$.next();
   }
 
 }
