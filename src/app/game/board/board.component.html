@@ -1,4 +1,7 @@
-<div class="container">
+<div class="container"
+  [class.five-col-grid]="cardList.length > 16"
+  [class.four-col-grid]="cardList.length > 9 && cardList.length <= 16"
+  [class.three-col-grid]="cardList.length <= 9">
   <app-card
     *ngFor="let card of cardList"
     [cardData]="card"

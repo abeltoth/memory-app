@@ -1,13 +1,13 @@
 .container {
-  max-width: 845px;
-  margin: auto;
+  margin-bottom: 80px;
 }
 
 .info-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 0;
+  margin: 40px auto;
+  max-width: 54vw;
 }
 
 #current-tries {
@@ -36,4 +36,10 @@
 
 .best-number {
   font-size: 30px;
+}
+
+@media(max-width:600px) {
+  .info-line {
+    max-width: 99vw;
+  }
 }

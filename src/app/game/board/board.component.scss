@@ -1,5 +1,31 @@
 .container {
   display: grid;
-  gap: 15px;
-  grid-template-columns: repeat(auto-fill, 200px);
+  gap: 1vw;
+  justify-content: center;
+}
+
+.five-col-grid {
+  grid-template-columns: repeat(5, 10vw);
+}
+
+.four-col-grid {
+  grid-template-columns: repeat(4, 10vw);
+}
+
+.three-col-grid {
+  grid-template-columns: repeat(3, 10vw);
+}
+
+@media(max-width:600px) {
+  .five-col-grid {
+    grid-template-columns: repeat(5, 19vw);
+  }
+
+  .four-col-grid {
+    grid-template-columns: repeat(4, 19vw);
+  }
+
+  .three-col-grid {
+    grid-template-columns: repeat(3, 19vw);
+  }
 }
